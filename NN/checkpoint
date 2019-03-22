@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/milax/Escriptori/flappyMuereArriba/xarxaMESRAPIDA/NN/flappy_tfl_web.tflearn"
+all_model_checkpoint_paths: "/home/milax/Escriptori/flappyMuereArriba/xarxaMESRAPIDA/NN/flappy_tfl_web.tflearn"
