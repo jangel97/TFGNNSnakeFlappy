@@ -23,6 +23,7 @@ prev_v=0
 prev_h=0
 v=0
 h=0
+h2=0
 movimientos=0
 inicio_game=True
 
@@ -84,10 +85,10 @@ def generate_observation(request):
 	pipes=request["pipes"]
 	score=request["score"]
 	
-	vertical, horizontal=get_positions(flappy,pipes,score)
+	verticalARRIBA, verticalABAJO,horizontalPRIMERA,horizontalSEGUNDA=get_positions(flappy,pipes,score)
 	#print pipes
 	#print pipes[0]["y"], pipes[1]["y"], flappy["y"], vertical
-	return [vertical, horizontal]
+	return [verticalARRIBA, verticalABAJO,horizontalPRIMERA,horizontalSEGUNDA]
 
 def get_positions(flappy,pipes,score):
 	global indice
@@ -109,11 +110,19 @@ def get_positions(flappy,pipes,score):
 	try:
 		prev_v=v
 		prev_h=h
-		v=pipes[indice]["y"]-60-flappy["y"] #pipes[0]=top pipes[1]=bot (considerar el punto medio ancho del hole=120 sumar 60 para punto medio)
+		print "PIPEEEEEEEEEE:" +str(pipes)
+		hcerca=pipes[indice]["x"]-flappy["x"]
+		v=pipes[indice]["y"]-120-flappy["y"] #pipes[0]=top pipes[1]=bot (considerar el punto medio ancho del hole=120 sumar 60 para punto medio)
+		vcerca=pipes[indice]["y"]-flappy["y"]
 		h=pipes[indice]["x"]+60-flappy["x"] #50 antes
-		return v,h
-	except:
-		return 0,0
+
+		return v,vcerca,h,hcerca
+
+	except (Exception) as error:	#PETA JUSTO AL PASAR POR UN PIPE
+		print (error)
+		import time
+		time.sleep(500)
+		return 0,0,0
 
 def resetflappy():
 	global indice
@@ -166,7 +175,7 @@ def wasGoodActionFlappy(request):
 	'''
 	#PROPUESTA JOSE	
 		
-	if (prev_score<score or (pipes[indice]["y"]-20>flappy["y"]  and pipes[indice]["y"]-110<flappy["y"])):	#TENER EN CUENTA HORIZONTAL
+	if (prev_score<score or (pipes[indice]["y"]>flappy["y"]  and pipes[indice]["y"]-120<flappy["y"])):	#TENER EN CUENTA HORIZONTAL
 		#return (not(request["done"]) or prev_score<score) 	 #NO ALEJARSE DEL PUNTO MEDIO
 		return True
 	else:

@@ -3,7 +3,6 @@ import numpy as np
 import math
 from statistics import mean
 from collections import Counter
-
 import tflearn as tf
 from tflearn.layers.core import input_data, fully_connected
 from tflearn.layers.estimator import regression
@@ -27,7 +26,7 @@ class NN:
 	if self.lib is 'tfl':
 		self.filename = 'NN/flappy_tfl_web.tflearn'
         	self.model = self.model_tfl()
-		self.model.load(self.filename)
+		#self.model.load(self.filename)
         elif self.lib is 'keras':		
 		self.filename = 'NN/flappy_keras_web.h5'
 		with self.graph.as_default():
@@ -72,14 +71,14 @@ class NN:
 
     def train_model(self, training_data, model):
 	if self.lib is 'tfl':
-        	X = np.array([i[0] for i in training_data]).reshape(-1, 3, 1)   #4 observations (arriba, abajo y derecha; son distancias) y la accion 
+        	X = np.array([i[0] for i in training_data]).reshape(-1, 5, 1)   #4 observations (arriba, abajo y derecha; son distancias) y la accion 
 		y = np.array([i[1] for i in training_data]).reshape(-1, 1)
         	model.fit(X,y, n_epoch = 20, shuffle = True, run_id = self.filename)
 		model.save(self.filename)
 	else:
 		with self.graph.as_default():
 			with self.session.as_default():
-				X = np.array([i[0] for i in training_data]).reshape(-1, 3)
+				X = np.array([i[0] for i in training_data]).reshape(-1, 5)
 				y = np.array([i[1] for i in training_data]).reshape(-1, 1)
 				model.fit(X,y,epochs= 10, shuffle = True)
 				model.save_weights(self.filename)
@@ -91,14 +90,14 @@ class NN:
 	predictions=[]
 	if self.lib is 'tfl':
         	for action in range(0,2):
-        		predictions.append(self.model.predict(self.add_action_to_observation(prev_observation, action).reshape(-1, 3, 1)))
+        		predictions.append(self.model.predict(self.add_action_to_observation(prev_observation, action).reshape(-1, 5, 1)))
 	else:
   		with self.graph.as_default():
          		with self.session.as_default():   
           			for action in range(0, 2): #-1 (abajo) y 0 (arriba)
                     			graph=tensorflow.get_default_graph()
                    			with graph.as_default():
-                    				prediction=self.model.predict(self.add_action_to_observation(prev_observation, action).reshape(-1, 3)) 
+                    				prediction=self.model.predict(self.add_action_to_observation(prev_observation, action).reshape(-1, 5)) 
                    				predictions.append(prediction)
         action = np.argmax(np.array(predictions))
         game_action = get_game_action(request,action)
@@ -109,7 +108,7 @@ class NN:
 
     #NN con tflearn
     def model_tfl(self):
-        network = input_data(shape=[None, 3, 1], name='input')
+        network = input_data(shape=[None, 5, 1], name='input')
         network = fully_connected(network, 100, activation='relu')
         #network = fully_connected(network, 75, activation='relu')
         network = fully_connected(network, 1, activation='linear')
@@ -120,7 +119,7 @@ class NN:
     #NN con Keras
     def model_keras(self):
         model = Sequential()
-        model.add(Dense(units=3, input_dim=3))
+        model.add(Dense(units=5, input_dim=5))
         model.add(Dense(units=200, activation='relu'))
         model.add(Dense(output_dim=1,  activation = 'linear'))
         model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])

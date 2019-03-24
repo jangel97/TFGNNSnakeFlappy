@@ -64,7 +64,7 @@ function myFunction(x) {
  var position_pipe=300;
  var creation_pipe=90;
  var partidas=0;
- var maxium=50;
+ var maxium=1000;
  var maxim=300;
  var minim=50;
 
@@ -258,7 +258,7 @@ function Do_a_Frame () {
 				}
 			 }
 
-			if (pipes.length>0){
+			if (pipes.length>1){
 			// alert("NOT EMPTY");
 			 data={"bird":bird, "pipes":pipes, "score": score}
 			 object=ask_server("getaction",false, data);
@@ -285,7 +285,7 @@ function Do_a_Frame () {
 			 object.score=score;
 			 object.done=(game_mode=="over");
 			//if (object.done==true) alert(object.done)
-			if (pipes.length>0){
+			if (pipes.length>1){
 			 sub_ask_server("saveaction",false,object);
 			}
 			 score=0
@@ -310,7 +310,7 @@ else if (aux<20){
 				}
 			 }
 
-			if (pipes.length>0){
+			if (pipes.length>1){
 			 data={"bird":bird, "pipes":pipes, "score": score}
 			 object=ask_server("predict",false, data);
 
