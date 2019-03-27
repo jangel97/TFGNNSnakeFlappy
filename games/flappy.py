@@ -120,9 +120,7 @@ def get_positions(flappy,pipes,score):
 
 	except (Exception) as error:	#PETA JUSTO AL PASAR POR UN PIPE
 		print (error)
-		import time
-		time.sleep(500)
-		return 0,0,0
+		return 0,0,0,0
 
 def resetflappy():
 	global indice

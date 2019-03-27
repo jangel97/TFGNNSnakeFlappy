@@ -32,12 +32,12 @@ class NN:
 		with self.graph.as_default():
 			with self.session.as_default():
 				self.model = self.model_keras()
-		'''
+		
 		with self.graph.as_default():
 			with self.session.as_default():
 				self.model.load_weights(self.filename)
 				print("neural network initialised")
-		'''
+		
 
     #llamada POST
     #funciones generales para las 2 libs

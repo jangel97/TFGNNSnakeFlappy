@@ -45,7 +45,7 @@ def get_game_action_predict(request, action):
 	        game_action = pair[1]
 	return game_action
 
-def generate_observation_snake(request):
+def generate_observation(request):
 	snake=request["snake"]
 	snake=map(lambda d : [d["x"],d["y"]] ,snake)
 	food=request["food"]
@@ -76,8 +76,8 @@ def get_food_distance(request):
 	snake=map(lambda d : [d["x"],d["y"]] ,snake)
         return np.linalg.norm(get_food_direction_vector(snake, food))
 
-def wasGoodActionSnake(request,food_distance):
-	return (request["score"]>request["score_prev"] or food_distance < request[u'prev_distance'])
+def wasGoodActionSnake(request):
+	return (request["score"]>request["score_prev"] or get_food_distance(request) < request[u'prev_distance'])
 
 def normalize_vector(vector):
         return vector / np.linalg.norm(vector)

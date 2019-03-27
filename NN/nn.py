@@ -12,22 +12,25 @@ from keras.layers import Dense
 import tensorflow
 
 class NN:
-    def __init__(self, initial_games = 10000, test_games = 1000, goal_steps = 2000, lr = 1e-2, lib = ''):
+    def __init__(self, initial_games = 10000, test_games = 1000, goal_steps = 2000, lr = 1e-2, lib = '',game = '', hidden_neurons=1):
         self.initial_games = initial_games
         self.test_games = test_games
         self.goal_steps = goal_steps
         self.lr = lr
 	self.training_data=[]
 	self.lib=lib
+	self.game=game
+	self.hidden_neurons=hidden_neurons
 	self.session=tensorflow.Session()
 	self.graph=tensorflow.get_default_graph()
 
 	# Dependiendo de que html se elige se coje una lib o otra
 	if self.lib is 'tfl':
-		self.filename = 'NN/snake_tfl_web.tflearn'
+		self.filename = 'NN/'+self.game+'_tfl_web.tflearn'
         	self.model = self.model_tfl()
+		self.model.load(self.filename)
 	else:		
-		self.filename = 'NN/snake_keras_web.h5'
+		self.filename = 'NN/'+self.game+'_keras_web.h5'
 		self.model = self.model_keras()
 		with self.graph.as_default():
 			with self.session.as_default():
@@ -41,13 +44,12 @@ class NN:
         action, game_action=generateAction(requestJson)
 	return observations,action, game_action
                 
-    def save_data(self,request,distance,wasGoodAction): #requestJson(obs,action, wasGoodAction,done)
+    def save_data(self,request,wasGoodAction): #requestJson(obs,action, wasGoodAction,done)
 	food_distance=None
 	if request["done"]:
 		self.training_data.append([self.add_action_to_observation(request["obs"], request["action"]), -1])
 	else:
-		food_distance=distance(request);
-		if wasGoodAction(request,food_distance):
+		if wasGoodAction(request):
 			self.training_data.append([self.add_action_to_observation(request["obs"], request["action"]), 1])
 		else:
 			self.training_data.append([self.add_action_to_observation(request["obs"], request["action"]), 0])
@@ -61,6 +63,7 @@ class NN:
         self.model = self.train_model(self.training_data, self.model)
 
     def train_model(self, training_data, model):
+	print len(training_data[0][0])
 	if self.lib is 'tfl':
         	X = np.array([i[0] for i in training_data]).reshape(-1, 5, 1)   #jugar con numero deparametros 
 		y = np.array([i[1] for i in training_data]).reshape(-1, 1)
@@ -75,17 +78,17 @@ class NN:
 		model.save_weights(self.filename)
         return model
 
-    def predictAction(self,request,generate_observation,get_game_action):
+    def predictAction(self,request,generate_observation,get_game_action,prange):
 	print(request)      
         prev_observation = generate_observation(request)#food y snake
 	predictions=[]
 	if self.lib is 'tfl':
-        	for action in range(-1,2):
+        	for action in prange:
         		predictions.append(self.model.predict(self.add_action_to_observation(prev_observation, action).reshape(-1, 5, 1)))
 	else:
   		with self.graph.as_default():
          		with self.session.as_default():   
-          			for action in range(-1, 2):
+          			for action in prange:
                    			graph=tensorflow.get_default_graph()
                    			with graph.as_default():
                     				prediction=self.model.predict(self.add_action_to_observation(prev_observation, action).reshape(-1, 5)) 
@@ -99,7 +102,7 @@ class NN:
     #NN con tflearn
     def model_tfl(self):
         network = input_data(shape=[None, 5, 1], name='input')
-        network = fully_connected(network, 100, activation='relu')
+        network = fully_connected(network, self.hidden_neurons, activation='relu')
         network = fully_connected(network, 1, activation='linear')
         network = regression(network, optimizer='adam', learning_rate=self.lr, loss='mean_square', name='target')
         model = tf.DNN(network, tensorboard_dir='log')
@@ -109,7 +112,7 @@ class NN:
     def model_keras(self):
         model = Sequential()
         model.add(Dense(units=5, input_dim=5))
-        model.add(Dense(units=25, activation='relu'))
+        model.add(Dense(units=self.hidden_neurons, activation='relu'))
         model.add(Dense(output_dim=1,  activation = 'linear'))
         model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
         return model
