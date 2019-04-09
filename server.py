@@ -92,9 +92,9 @@ def train_rest():
     nn.train_rest()
     return json.dumps({}), 200
 
-@app.route("/resetflappy", methods = ["POST"])
-def resetflappy():
-	game.resetflappy()
+@app.route("/reset", methods = ["POST"])
+def reset():
+	game.reset()
 	return json.dumps({}), 200
 
 

@@ -122,7 +122,7 @@ def get_positions(flappy,pipes,score):
 		print (error)
 		return 0,0,0,0
 
-def resetflappy():
+def reset():
 	global indice
 	global prev_score
 	global auxiliar
@@ -135,7 +135,6 @@ def get_flappy_direction_vector(flappy):
 	global anterior
 	if anterior is []:
 		anterior=flappy
-                #print "ANTERIOOOOOR: " + anterior
 		return [0,0]	#!!!!
 	else:
 		direction = np.array(flappy) - np.array(anterior)	#vector direccion del flappy
@@ -144,8 +143,6 @@ def get_flappy_direction_vector(flappy):
 
 
 def get_game_action_predict(request, action):
-	#print 'REQUEST: ' + str(request) + '\n'
-	#print 'ACTION Q VIENE: ' + str(action)
 	if (action==1):
 		return [0,1]
 	else:
