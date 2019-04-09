@@ -10,10 +10,32 @@ app = Flask(__name__, template_folder='templates')
 nn=None
 predict_range=[]
 
+#Funciones Navegacion
 @app.route('/')
 def index():
 	return render_template('index.html')
 
+@app.route('/teoria')
+def teoria():
+	return render_template('teoria.html')
+
+@app.route('/framework')
+def framework():
+	return render_template('framework.html')
+
+@app.route('/libTfl')
+def libTfl():
+	return render_template('libTfl.html')
+
+@app.route('/libKeras')
+def libKeras():
+	return render_template('libKeras.html')
+
+@app.route('/comparativaLibs')
+def comparativaLibs():
+	return render_template('comparativaLibs.html')
+
+#Functiones de la Red Neuronal
 @app.route('/tfl')
 def tfl():
 	global game
@@ -23,7 +45,7 @@ def tfl():
 	nn=NN.NN(lib='tfl', game='snake', hidden_neurons=100)
 	predict_range=[-1,0,1]
 
-	return render_template('snake_predict.html')
+	return render_template('gamesHTML/snake_predict.html')
 
 @app.route('/keras')
 def keras():
@@ -35,7 +57,7 @@ def keras():
 	
 	nn=NN.NN(lib='keras', game='snake', hidden_neurons=25)
 	predict_range=[-1,0,1]
-	return render_template('snake_predict.html')
+	return render_template('gamesHTML/snake_predict.html')
 
 @app.route('/flappy')
 def flappy():
@@ -45,7 +67,7 @@ def flappy():
 	global predict_range
 	nn=NN.NN(lib='keras', game='flappy', hidden_neurons=200)
 	predict_range=[0,1]
-	return render_template('flappypredict.html')
+	return render_template('gamesHTML/flappypredict.html')
 
 # sends the x and y coordinates to the client
 @app.route("/getaction", methods = ["POST"])
