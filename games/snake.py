@@ -76,7 +76,7 @@ def get_food_distance(request):
 	snake=map(lambda d : [d["x"],d["y"]] ,snake)
         return np.linalg.norm(get_food_direction_vector(snake, food))
 
-def wasGoodActionSnake(request):
+def wasGoodAction(request):
 	return (request["score"]>request["score_prev"] or get_food_distance(request) < request[u'prev_distance'])
 
 def normalize_vector(vector):

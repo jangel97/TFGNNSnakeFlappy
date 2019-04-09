@@ -151,7 +151,7 @@ def get_game_action_predict(request, action):
 	else:
 		return [0,-1]
 
-def wasGoodActionFlappy(request):
+def wasGoodAction(request):
 	global prev_score
 	global prev_v
 	global v
