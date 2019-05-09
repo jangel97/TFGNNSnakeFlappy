@@ -18,6 +18,10 @@ predict_range=[]
 def index():
 	return render_template('index.html') #Se renderiza index.html y se envia el template al navegador
 
+@app.route('/resumen')
+def resumen():
+	return render_template('sobre.html') 
+
 @app.route('/teoria')
 def teoria():
 	return render_template('teoria.html') #Se renderiza teoria.html y se envia el template al navegador

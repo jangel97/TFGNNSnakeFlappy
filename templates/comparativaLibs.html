@@ -35,6 +35,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+	  <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('resumen') }}">Resumen</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('teoria') }}">Teoria</a>
           </li>
@@ -68,12 +71,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1>Man must explore, and this is exploration at its greatest</h1>
-            <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-            <span class="meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on August 24, 2019</span>
+          <div class="page-heading">
+            <h1>TFLearn VS Keras</h1>
           </div>
         </div>
       </div>
@@ -84,43 +83,72 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+        <div class="col-lg-8 col-md-10 mx-auto" style="text-align: justify">
+          <p>Para comparar las librerias decidimos hacer nuestra propia comparativa con el juego Snake teniendo en cuenta los siguientes parámetros, tiempo de entrenamiento, precisión, número de aciertos, número de partidas entrenadas y epochs. La puntuación es la media aritmética de cien partidas diferentes jugadas con la red neuronal entrenada.</p>
 
-          <p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+          <p>SCada una de las gráficas que hay a continuación corresponden a la puntuación media de la red neuronal, en base a la cantidad de partidas de entrenamiento y número de epochs, además del accuracy obtenido, tanto para Keras como para Tflearn. </p>
 
-          <p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+          <h2 class="section-heading">Keras</h2>
+	  <center>
+	  	<img class="img-fluid" src="/static/img/keras_punt.PNG">
+	  </center>
+	  <span class="caption text-muted"> Gráfica Puntuación en partidas por epochs (Keras) </span>
 
-          <p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+          <p>Es interesante ver cómo en general:</p>
+	  <ul>
+		<li>Cuanto más aumenta el número de partidas entrenadas, mayor puntuación.</li>
+		<li>No es tanto el salto de cien a mil partidas entrenadas como el de mil a diez-mil. </li>
+		<li>Conforme los epochs aumentan, si el número de partidas de entrenamiento ha sido bajo, entonces la puntuación mejora.</li>
+		<li>Los resultados se estabilizan cuando llegamos a los 20 epochs y en general mejoran.</li>
+	  </ul>
 
-          <p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+	  <center>
+	  	<img class="img-fluid" src="/static/img/keras_acc.PNG">
+	  </center>
+	  <span class="caption text-muted"> Gráfica Accuracy en partidas por epochs (Keras)  </span>
 
-          <h2 class="section-heading">The Final Frontier</h2>
+          <p>En cuanto al accuracy:</p>
+	  <ul>
+		<li>Se puede ver como no es tanto el cambio de quince a veinte epochs, independientemente del número de partidas.</li>
+		<li>El cambio de un epoch a cinco, se refleja en el accuracy. Poco a poco, hasta llegar a los quince epochs, el accuracy va mejorando. </li>
+		<li>El número de partidas también es relevante ya que además de los epochs, este parámetro también condiciona el accuracy.</li>
+	  </ul>
+         
+          <h2 class="section-heading">TFlearn</h2>
 
-          <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+          <center>
+	  	<img class="img-fluid" src="/static/img/tflearn_punt.PNG">
+	  </center>
+	  <span class="caption text-muted"> Gráfica Puntuación en partidas por epochs (TFLearn)</span>
 
-          <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+          <p>Es interesante ver cómo en general:</p>
+	  <ul>
+		<li>Cuanto más aumenta el número de partidas entrenadas, mayor puntuación, al igual que en el estudio de Keras. </li>
+		<li>No es tanto el salto de cien a mil partidas entrenadas como el de mil a diez-mil.</li>
+		<li>Conforme los epochs aumentan, si el número de partidas de entrenamiento ha sido bajo, entonces la puntuación mejora.</li>
+	  </ul>
 
-          <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+	  <center>
+	  	<img class="img-fluid" src="/static/img/tflearn_acc.PNG">
+	  </center>
+	  <span class="caption text-muted"> Gráfica Accuracy en partidas por epochs (TFLearn)</span>
 
-          <p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+          <p>En cuanto al accuracy:</p>
+	  <ul>
+		<li>En cuanto al accuracy se puede apreciar como también conforme el número de partidas aumenta este también aumenta, pese a que la mejora entre las mil y diez-mil partidas no es tan clara como en el caso de Keras.</li>
+	  </ul>
 
-          <h2 class="section-heading">Reaching for the Stars</h2>
+	  <h2 class="section-heading">Conclusión</h2>
 
-          <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
-
-          <a href="#">
-            <img class="img-fluid" src="/static/img/post-sample-image.jpg" alt="">
-          </a>
-          <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
-
-          <p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
-
-          <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
-
-          <p>Placeholder text by
-            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
-            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
+	  <p>La conclusión de la comparativa sería la siguiente:</p>
+ 
+	  <p>Es interesante ver que los mejores resultados, en general, se obtienen cuando el número de partidas de entrenamiento es más grande, se dispara completamente cuando pasamos a las 10000 partidas.</p>  
+ 
+	  <p>En cuanto a los epochs, se puede apreciar como, en general, los resultados mejoran a medida que los epochs aumentan, aunque está muy interrelacionado con el número de partidas entrenadas.</p>  
+ 
+	  <p>Si hubiera que destacar algo es que cuando el número de epochs es alto y el número de partidas también, los resultados no son precisamente los mejores. Pensamos que esto tiene que ver por una problemática que será comentada después conocida como overfitting.</p> 
+ 
+	  <p>En ambas gráficas se puede apreciar como Keras en general tiene mejores resultados que Tflearn en las mismas condiciones y también mejor accuracy. Por tanto, teniendo en cuenta que la comunidad de Keras es mayor que la de Tflearn, utilizaremos Keras para programar nuestra red neuronal.</p>
         </div>
       </div>
     </div>
@@ -135,31 +163,24 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <ul class="list-inline text-center">
             <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
+              <a href="https://github.com/jangel97/TFGNNSnakeFlappy" target="_blank">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+          
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/watch?v=O6OZs0533bs&list=PLcgIGJXOlwfc7OrFi-RVXyNsvZ_g_fEvR" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+	  </ul>
+          <p class="copyright text-muted">Creado por Jose Angle Morena Simón y Eduard Forés Ferrer</p>
         </div>
       </div>
     </div>

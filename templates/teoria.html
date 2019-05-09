@@ -35,6 +35,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+	  <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('resumen') }}">Resumen</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('teoria') }}">Teoria</a>
           </li>
@@ -69,8 +72,8 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>About Me</h1>
-            <span class="subheading">This is what I do.</span>
+            <h1>Teoria</h1>
+            <span class="subheading">Como funciona una red neuronal?</span>
           </div>
         </div>
       </div>
@@ -80,10 +83,55 @@
   <!-- Main Content -->
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+      <div class="col-lg-8 col-md-10 mx-auto" style="text-align: justify">
+        <p>Durante estos últimos años, el término deep learning, ha tomado mucho protagonismo en la comunidad tecnológica informática a nivel mundial. Sin embargo, poco se sabe de esta nueva técnica y los mecanismos que hacen que funcione por debajo de cualquier abstracción o librería de código. En apartado tratará de: </p>
+	<ul>
+		<li>Explicar el funcionamiento de una red neuronal.</li>
+		<li>Entender cómo funciona el mecanismo de aprendizaje.</li>
+		<li>Aclarar los tipos de redes neuronales más básicos pero principales.</li>
+		<li>Puntualizar las tecnologías más punteras actualmente en este área.</li>
+		<ul>
+			<li>Estudiar las tecnologías con mayor comunidad.</li>
+			<li>Elegir tecnología para el proyecto.</li>
+			<li>Contrastar herramientas a emplear.</li>
+		</ul>
+	</ul>
+        <p>El objetivo es transmitir una idea aproximada y precisa de cómo funciona esta técnica y fomentar el entendimiento fundamental de esta con tal de propiciar un mayor entendimiento del trabajo y las decisiones tomadas en este.</p>
+        <p>Pero antes de empezar con los puntos mencionados anteriormente tenemos que explicar que es el machine learning y el deep learning con un poco de profundidad.</p>
+
+	<h2 class="section-heading" id="machine">¿Qué es el machine learning?</h2>
+
+	<p>El <b>machine learning</b> (aprendizaje automático, en español) es una rama de la inteligencia artificial, con el objetivo de desarrollar técnicas para que los ordenadores <i>aprendan</i>. Explicado de una manera más precisa, se trata de <i>programas/algoritmos</i> que tienen la capacidad de generar comportamientos a partir de <i>datasets</i> en forma de ejemplos, de cuya información se alimentan para procesamiento de información. </p>
+	<p>El aprendizaje automático puede ser de diferentes tipos:</p>
+	<ul>
+		<li><b>Aprendizaje supervisado:</b> sirve para deducir una función a partir de datos de entrenamiento. Los datos de entrenamiento son el dataset que en este caso está formado por los datos de entrada al sistema y los resultados deseados. La salida puede ser una valor numérico (para los problemas de regresión) o una etiqueta de clase (para los de clasificación).</li>
+		<li><b>Aprendizaje no supervisado:</b> este ajusta un modela a las observaciones que se le han dado. Se diferencia del aprendizaje supervisado por no tener un dataset a priori. Así trata los objetos de entrada como variables aleatorias construyendo un modelo de densidad para el conjunto de datos. </li>
+		<li><b>Aprendizaje por refuerzo:</b> su labor es determinar qué acciones debe elegir un agente de software en un entorno dado con el fin de maximizar alguna noción de recompensa o premio acumulado. </li>
+		<li><b>Transducción:</b> son similares a los supervisados, pero no deducen una función sino que intentan predecir los futuros ejemplos basándose en los ejemplos de entrada y ejemplos de nuevos sistemas.Transducción: son similares a los supervisados, pero no deducen una función sino que intentan predecir los futuros ejemplos basándose en los ejemplos de entrada y ejemplos de nuevos sistemas.</li>
+		
+	</ul>
+	<p>El mundo del machine learning tiene diferentes técnicas de clasificación como podrían ser los árboles de decisiones y algoritmos genéricos pero en este trabajo nos vamos a centrar en las redes neuronales artificiales (Artificial Neuronal Networks, en Inglés) y el deep learning. </p>
+
+	<h2 class="section-heading" id="deep">¿Qué es el deep learning?</h2>
+
+	<p>El <b>deep learning</b> (aprendizaje profundo, en español) está inspirado en la manera de procesar la información y los patrones de comunicación que encontramos en los sistemas nerviosos biológicos pero hay diferencias entre las propiedades estructurales y funcionales de los cerebros biologicos. </p>
+	<p>El aprendizaje profundo es una parte del amplio mundo de del machine learning basado en métodos de aprendizaje de representación. Estos pueden ser <i>supervisados, semi-supervisados y no supervisados</i>, que son los tipos de algoritmos explicados anteriormente. Estos algoritmos son usados para formar la base del conexionismo que ha su vez es la base de las Artificial Neuronal Networks.</p>
+	<p>El conexionismo es un enfoque en el campo de la ciencia cognitiva con la esperanza de poder explicar los fenómenos mentales utilizados en las redes neuronales artificiales. Su principal objetivo es que los fenómenos mentales puedan ser descritos por redes de unidades sencillas y frecuentemente iguales que se interconectan. La forma de las conexiones y de las unidades varía de un modelo a otro. Por ejemplo, las unidades de la red podrían representar neuronas y las conexiones podrían representar sinapsis. Otro modelo podría hacer cada unidad de la red una palabra, y cada conexión una indicación de similitud semántica. Las redes neuronales artificiales son modelos conexionistas y hay una gran variedad de modelos de redes neuronales, aunque casi siempre siguen dos principios básicos relativos a la mente: </p>
+
+	<ul>
+		<li>Cualquier estado mental puede ser descrito como un vector de (N)dimensional.</li>
+		<li>La memoria se crea cuando se modifican los valores que representan la fuerza de las conexiones entre las unidades neuronales. La fuerza de las conexiones son generalmente representadas como una matriz de (N x N) dimensiones.</li>
+	</ul>
+	<p>Una vez explicadas estas bases podemos pasar a explicar que es una Artificial Neuronal Network y cómo funciona.</p>
+
+	<h2 class="section-heading" id="ann">¿Qué es una Artificial Neuronal Network?</h2>
+
+	<p>Una <b>Red Neuronal Artificial</b> es un intento minimalista de modelo computacional sobre el comportamiento cerebral y sistema nervioso. Como en el sistema nervioso, la unidad básica fundamental es la neurona.</p>
+	<p>Para poder predecir y tener funcionamiento, las redes neuronales deben ser entrenadas. Este entrenamiento puede ser tanto de manera <i>supervisada, semi-supervisada o no supervisada</i>. En este trabajo, el entrenamiento implementado será supervisado para los distintos programas. El objetivo de este tipo de entrenamiento es capacitar la red neuronal para dada una entrada, tener la salida deseada. Su funcionamiento se observará más en profundidad posteriormente.</p>
+
+	<p></p>
+	<p></p>
+	<p></p>
       </div>
     </div>
   </div>
@@ -97,31 +145,24 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <ul class="list-inline text-center">
             <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
+              <a href="https://github.com/jangel97/TFGNNSnakeFlappy" target="_blank">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+          
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/watch?v=O6OZs0533bs&list=PLcgIGJXOlwfc7OrFi-RVXyNsvZ_g_fEvR" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+	  </ul>
+          <p class="copyright text-muted">Creado por Jose Angle Morena Simón y Eduard Forés Ferrer</p>
         </div>
       </div>
     </div>
