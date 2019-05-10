@@ -163,7 +163,7 @@
 		<li><b>Neuronas:</b> Estas contienen las diferentes ponderaciones y operaciones que hacer con los datos de entrada. La función de activación (o de mapeo) sirve para restringir los valores de los datos a un rango. Algunas funciones de activación son, sigmoidal, limitante, escalera, gaussiana, lineal, tangente hiperbólica.</li>
 
 		<center>
-		  	<img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  	<img class="img-fluid" src="/static/img/funciones.PNG">
 		</center>
 		<span class="caption text-muted"> Gráficas de funciones de activación</span>
 
@@ -181,17 +181,17 @@
 	</ul>
 
 	<center>
-		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  <img class="img-fluid" src="/static/img/red_neuronal.PNG">
 	</center>
-	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+	<span class="caption text-muted"> Esquema Red Neuronal</span>
 
 	<h4 class="section-heading-2">Proceso de Aprendizaje</h4>
 
 	<p>Entrenar una red neuronal, mediante los pesos ponderados y los biases, implica un proceso de <i>ida y vuelta</i>, un proceso iterativo. La ida se conoce como <b>forwardpropagation</b>, mientras que la vuelta corresponde a <i>backpropagation</i>. </p>
 	<center>
-		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  <img class="img-fluid" src="/static/img/forward-barckward.png">
 	</center>
-	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+	<span class="caption text-muted"> Esquema de forward Propagations + barckward propagation</span>
 
 	<p>La primera fase es la <i>forward propagation</i>, esta ocurre cuando la red se expone a un <i>dataset</i> de entrenamiento y se procede a calcular las distintas ponderaciones. En resumen, pasar toda la información por la red, para que cada una de las neuronas aplique su función y la información vaya pasando de capa en capa, hasta llegar a la última capa cuya salida es el resultado de la red. Al ser entrenamiento supervisado, se aplica una una función para estimar el error de la predicción y medir como de correcta/incorrecta ha sido en relación al resultado esperado. Idealmente el error debiera ser cero, cuanto más entrene la red, mejores predicciones y por tanto este error tenderá más rápidamente a cero.</p>
 	<p>La siguiente fase es la <i>backpropagation</i>, una vez se ha calculado el error en la predicción (durante el entrenamiento), el error se propaga hacia atrás, desde la output layer pasando por las hidden layers (estas solo reciben una fracción dependiendo de la contribución relativa de cada neurona en el resultado final), hasta volver a las input layers. Recalculando cada una de las ponderaciones.</p>
@@ -199,9 +199,9 @@
 	<p>El proceso de aprendizaje podría verse de la siguiente manera: </p>
 	
 	<center>
-		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  <img class="img-fluid" src="/static/img/aprendizaje.png">
 	</center>
-	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+	<span class="caption text-muted"> Esquema del proceso de aprendizaje</span>
 
 	<p>A continuación se presentarán más en detalle cada uno de los elementos presentados.</p>
 
@@ -215,36 +215,36 @@
 	<p>Como su propio nombre indica la función <i>Linear</i> no cambia la señal de salida. Se suele usar como función de activación de la <i>Input Layer</i> para que lleguen los datos hacia las <i>Hidden Layer</i> lo menos modificado possible.</p>
 
 	<center>
-		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  <img class="img-fluid" src="/static/img/linear.png">
 	</center>
-	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+	<span class="caption text-muted"> Gráfica Linear</span>
 
 	<h6 class="section-heading-4">Funciones Sigmoid</h6>
 
 	<p>Esta función nos permite hacer una reducción de valores extremos o atípicos en datos válidos sin eliminarlos. En otras palabras más simples, esta función convierte variables independientes de rango casi infinito a probabilidades simples entre 0 y 1.</p>
 
 	<center>
-		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  <img class="img-fluid" src="/static/img/sigmoid.png">
 	</center>
-	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+	<span class="caption text-muted"> Gráfica Sigmoid</span>
 
 	<h6 class="section-heading-4">Funciones Tanh</h6>
 
 	<p>La función Tanh, también llamada tangente hiperbólica, representa gráficamente la relación entre el seno hiperbólico y el coseno hiperbólico tanh(x)=sinh(x)/cosh(x). A diferencia de la función Sigmoid, el rango de normalización de Tanh es entre -1 y 1. El aspecto positivo del Tanh respecto Sigmoid es que los números negativos se pueden tratar con más facilidad. </p>
 
 	<center>
-		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  <img class="img-fluid" src="/static/img/tanh.png">
 	</center>
-	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+	<span class="caption text-muted"> Gráfica Tanh</span>
 
 	<h6 class="section-heading-4">Funciones ReLU</h6>
 
 	<p>La función llamada unidad lineal rectificada, también llamada coloquialmente función rampa activa solo un nodo si la entrada está por encima de un cierto umbral. El comportamiento que tiene dicha función es siempre que la entrada sea inferior a cero la salida será cero y si la entrada es superior la salida será en relación lineal con la variable de entrada.</p>
 
 	<center>
-		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+		  <img class="img-fluid" src="/static/img/relu.png">
 	</center>
-	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+	<span class="caption text-muted"> Gráfica ReLU</span>
 
 	<h4 class="section-heading-2">Optimizadores</h4>
 
