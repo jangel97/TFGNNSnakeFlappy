@@ -116,6 +116,12 @@
 
 	<p>El <b>deep learning</b> (aprendizaje profundo, en español) está inspirado en la manera de procesar la información y los patrones de comunicación que encontramos en los sistemas nerviosos biológicos pero hay diferencias entre las propiedades estructurales y funcionales de los cerebros biologicos. </p>
 	<p>El aprendizaje profundo es una parte del amplio mundo de del machine learning basado en métodos de aprendizaje de representación. Estos pueden ser <i>supervisados, semi-supervisados y no supervisados</i>, que son los tipos de algoritmos explicados anteriormente. Estos algoritmos son usados para formar la base del conexionismo que ha su vez es la base de las Artificial Neuronal Networks.</p>
+
+	<center>
+	  	<img class="img-fluid" src="/static/img/simple.png">
+	 </center>
+	 <span class="caption text-muted"> Ejemplo network+hidden layer</span>
+
 	<p>El conexionismo es un enfoque en el campo de la ciencia cognitiva con la esperanza de poder explicar los fenómenos mentales utilizados en las redes neuronales artificiales. Su principal objetivo es que los fenómenos mentales puedan ser descritos por redes de unidades sencillas y frecuentemente iguales que se interconectan. La forma de las conexiones y de las unidades varía de un modelo a otro. Por ejemplo, las unidades de la red podrían representar neuronas y las conexiones podrían representar sinapsis. Otro modelo podría hacer cada unidad de la red una palabra, y cada conexión una indicación de similitud semántica. Las redes neuronales artificiales son modelos conexionistas y hay una gran variedad de modelos de redes neuronales, aunque casi siempre siguen dos principios básicos relativos a la mente: </p>
 
 	<ul>
@@ -129,9 +135,132 @@
 	<p>Una <b>Red Neuronal Artificial</b> es un intento minimalista de modelo computacional sobre el comportamiento cerebral y sistema nervioso. Como en el sistema nervioso, la unidad básica fundamental es la neurona.</p>
 	<p>Para poder predecir y tener funcionamiento, las redes neuronales deben ser entrenadas. Este entrenamiento puede ser tanto de manera <i>supervisada, semi-supervisada o no supervisada</i>. En este trabajo, el entrenamiento implementado será supervisado para los distintos programas. El objetivo de este tipo de entrenamiento es capacitar la red neuronal para dada una entrada, tener la salida deseada. Su funcionamiento se observará más en profundidad posteriormente.</p>
 
-	<p></p>
-	<p></p>
-	<p></p>
+	<h4 class="section-heading-2">Modelo biológico vs modelo artificial</h4>
+
+	<p>La teoría y modelado de las redes neuronales artificiales se inspira en el funcionamiento de los sistemas nerviosos. En estos la neurona es el elemento fundamental. </p>
+
+	<center>
+	  	<img class="img-fluid" src="/static/img/neurona.png">
+	 </center>
+	 <span class="caption text-muted"> Neurona Biológica</span>
+
+	<p>El axón de las neuronas, se alarga hasta conectarse con las dendritas. Estas son las encargadas de establecer conexión con otras neuronas. Esto se conoce como sinapsis.</p>
+	<p>La sinapsis es una aproximación (funcional) intercelular especializada entre neuronas. En estos contactos se lleva a cabo la transmisión del impulso nervioso. Esto se inicia con una descarga química que origina una corriente eléctrica en la membrana de la célula emisora; una vez se da la comunicación con la neurona receptora, ésta segrega una sustancia encargada de excitar o inhibir la la acción de la anterior.</p>
+	<p>Sinapsis proviene de sinapteína, cuyo orígen etimológico es sin- “juntos” y hapteina “con firmeza” Cada neurona, al igual que en las redes neuronales artificiales, puede establecer conexión desde con una docena de neuronas hasta con cientos de miles. </p>
+
+	<p>Con tal de aclarar las ideas y establecer una similitud directa entre la actividad sináptica y la actividad análoga a las redes neuronales artificiales. Las señales que llegan a la sinapsis son la entradas a la neurona; estas son ponderadas (atenuadas o simplificadas) a través de un peso ponderado, asociado a la sinapsis correspondiente. Estas señales pueden excitar a la neurona o ser inhibida (peso negativo). El efecto es la suma de las entradas ponderadas. Si la suma es igual o mayor que el umbral de la neurona, entonces esta se activa, tal como en la sinapsis neuronal.</p>
+	<p>Cada neurona se representa mediante: entradas (dendritas), funciones de activación y salidas(axones).</p>
+	<p>Esquema de una neurona: </p>
+
+	<center>
+	  	<img class="img-fluid" src="/static/img/neurona_artificial.jpg">
+	 </center>
+	 <span class="caption text-muted"> Neurona Artificial</span>
+
+	<p>Como se puede ver, podríamos definir una red neuronal como una función composición. En cuanto a la arquitectura básica de esta, se pueden diferenciar 3 componentes principales: </p>
+	
+	<ul>
+		<li><b>Neuronas:</b> Estas contienen las diferentes ponderaciones y operaciones que hacer con los datos de entrada. La función de activación (o de mapeo) sirve para restringir los valores de los datos a un rango. Algunas funciones de activación son, sigmoidal, limitante, escalera, gaussiana, lineal, tangente hiperbólica.</li>
+
+		<center>
+		  	<img class="img-fluid" src="/static/img/neurona_artificial.png">
+		</center>
+		<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+		<li><b>Conexiones/Pesos ponderados:</b> Valores de la ponderación de cada conexión. </li>
+		<li><b>Biases:</b> Corresponden a los valores tras multiplicar los distintos pesos de la red frente a los datos de entrada. Estos en un principio no son correctos, es la red la que mediante back-propagation los irá aproximando a los valores óptimos</li>
+	</ul>
+	<p><b>Back-propagation</b>, es el algoritmo mediante el cual la red neuronal aproxima los valores de los pesos ponderados. Para conseguirlo, se calcula una salida deseada, se compara con la que tendría que ser (aprendizaje supervisado) y se trata de corregir las ponderaciones para el cálculo óptimo de los biases. </p>
+	<ul>
+		<li>Capas: Las capas, ayudan a incrementar la no linealidad de las salidas de la red neuronal. Cada capa contiene una cantidad de neuronas. Se pueden identificar las siguientes:</li>
+		<ul>
+			<li><b>Input layer:</b> Esta es la primera capa de la red. Hay tantas neuronas, como factores relevantes consideremos para la red. Es decir, un factor es relevante cuando es algo a tener en cuenta por la red. Por ejemplo, si se quisiera implementar pequeña red capaz de jugar al juego de la serpiente, los factores relevantes serían, el movimiento realizado (en una jugada), si se ha impactado con la comida o no, si se ha acabado la partida, etc. Por cada uno de estos, habrá una neurona en la input layer. </li>
+			<li><b>Hidden layer:</b> Estas capas, se emplean para añadir no linealidad a la red y precisión. Es importante tener en cuenta que si se quiere hacer algo bastante simple, no se requiere el uso de las hidden layers. Se pueden añadir tantas como uno quiera y su función de activación puede ser diferente a la del resto de capas. </li>
+			<li><b>Output layer:</b> En esta capa se encuentran tantas neuronas como posibles salidas esperamos de una predicción.</li>
+		</ul>
+	</ul>
+
+	<center>
+		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+	</center>
+	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+	<h4 class="section-heading-2">Proceso de Aprendizaje</h4>
+
+	<p>Entrenar una red neuronal, mediante los pesos ponderados y los biases, implica un proceso de <i>ida y vuelta</i>, un proceso iterativo. La ida se conoce como <b>forwardpropagation</b>, mientras que la vuelta corresponde a <i>backpropagation</i>. </p>
+	<center>
+		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+	</center>
+	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+	<p>La primera fase es la <i>forward propagation</i>, esta ocurre cuando la red se expone a un <i>dataset</i> de entrenamiento y se procede a calcular las distintas ponderaciones. En resumen, pasar toda la información por la red, para que cada una de las neuronas aplique su función y la información vaya pasando de capa en capa, hasta llegar a la última capa cuya salida es el resultado de la red. Al ser entrenamiento supervisado, se aplica una una función para estimar el error de la predicción y medir como de correcta/incorrecta ha sido en relación al resultado esperado. Idealmente el error debiera ser cero, cuanto más entrene la red, mejores predicciones y por tanto este error tenderá más rápidamente a cero.</p>
+	<p>La siguiente fase es la <i>backpropagation</i>, una vez se ha calculado el error en la predicción (durante el entrenamiento), el error se propaga hacia atrás, desde la output layer pasando por las hidden layers (estas solo reciben una fracción dependiendo de la contribución relativa de cada neurona en el resultado final), hasta volver a las input layers. Recalculando cada una de las ponderaciones.</p>
+	<p>Este proceso, se repite iterativamente, hasta que se el error en la predicción es prácticamente cero. Esta técnica se conoce como <b>gradiente descendiente</b>. Este nombre proviene por el hecho que los pesos ponderados de las conexiones se van modificando con pequeños incrementos con la ayuda del cálculo de la derivada de la función que estima el error en la predicción de la red neuronal. La cual ayuda a calcular los pesos ponderados.</p>
+	<p>El proceso de aprendizaje podría verse de la siguiente manera: </p>
+	
+	<center>
+		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+	</center>
+	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+	<p>A continuación se presentarán más en detalle cada uno de los elementos presentados.</p>
+
+	<h4 class="section-heading-2">Funciones de activación</h4>
+
+	<p>Las <b>funciones de activación</b> son usadas para propagar la salida de una neurona hacia adelante. Esta salida es recibida por las neuronas de la siguiente capa a la que está conectada está neurona. Estas funciones de activación sirven para introducir la no linealidad entre las capas de la red neuronal. </p>
+	<p>A continuación, vamos a entrar más en detalle con las 4 funciones más usadas hoy en día en <i>Deep Learning.</i></p>
+	
+	<h6 class="section-heading-4">Funciones Lineal</h6>
+
+	<p>Como su propio nombre indica la función <i>Linear</i> no cambia la señal de salida. Se suele usar como función de activación de la <i>Input Layer</i> para que lleguen los datos hacia las <i>Hidden Layer</i> lo menos modificado possible.</p>
+
+	<center>
+		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+	</center>
+	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+	<h6 class="section-heading-4">Funciones Sigmoid</h6>
+
+	<p>Esta función nos permite hacer una reducción de valores extremos o atípicos en datos válidos sin eliminarlos. En otras palabras más simples, esta función convierte variables independientes de rango casi infinito a probabilidades simples entre 0 y 1.</p>
+
+	<center>
+		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+	</center>
+	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+	<h6 class="section-heading-4">Funciones Tanh</h6>
+
+	<p>La función Tanh, también llamada tangente hiperbólica, representa gráficamente la relación entre el seno hiperbólico y el coseno hiperbólico tanh(x)=sinh(x)/cosh(x). A diferencia de la función Sigmoid, el rango de normalización de Tanh es entre -1 y 1. El aspecto positivo del Tanh respecto Sigmoid es que los números negativos se pueden tratar con más facilidad. </p>
+
+	<center>
+		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+	</center>
+	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+	<h6 class="section-heading-4">Funciones ReLU</h6>
+
+	<p>La función llamada unidad lineal rectificada, también llamada coloquialmente función rampa activa solo un nodo si la entrada está por encima de un cierto umbral. El comportamiento que tiene dicha función es siempre que la entrada sea inferior a cero la salida será cero y si la entrada es superior la salida será en relación lineal con la variable de entrada.</p>
+
+	<center>
+		  <img class="img-fluid" src="/static/img/neurona_artificial.png">
+	</center>
+	<span class="caption text-muted"> Gráficas de funciones de activación</span>
+
+	<h4 class="section-heading-2">Optimizadores</h4>
+
+	<p>Los optimizadores son argumentos requeridos en el momento en que se hace la función <i>complie()</i> solo podemos utilizar un optimizador en el entrenamiento de la red neuronal. Las posibilidades que tenemos son las siguientes: SGD, RMSprop, Adagrad, Adadelta, Adam, Adamax i Nadam. Adam es el más efectivo en menos tiempo de entrenamiento. </p>
+
+	<h4 class="section-heading-2">Parametrización de modelo</h4>
+
+	<p>Los modelos generalmente suelen tener los siguientes parámetros:</p>
+	<ul>
+		<li>Epochs.</li>
+		<li>Número de neuronas por capa.</li>
+		<li>Número de capas.</li>
+		<li>Función de activación.</li>
+	</ul>
+	<p>Los epochs, indican el número de veces que el dataset en cuestión pasa sobre la red neuronal en el proceso de aprendizaje. Incrementar el número de epochs es interesante para incrementar la precisión de la red neuronal siempre teniendo en cuenta un posible problema de overfitting.</p>
+	<p>Estos parámetros son fundamentales para poder incrementar el rendimiento de la red neuronal y el tiempo de ejecución del entrenamiento.</p>
       </div>
     </div>
   </div>
