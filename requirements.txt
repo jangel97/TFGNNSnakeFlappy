@@ -1,6 +1,6 @@
 numpy
 statistics
-tensorflow==1.14
+tensorflow==1.15.4
 tflearn
 keras
 flask
