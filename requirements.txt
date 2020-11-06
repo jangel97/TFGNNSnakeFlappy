@@ -1,0 +1,6 @@
+numpy
+statistics
+tensorflow==1.14
+tflearn
+keras
+flask
