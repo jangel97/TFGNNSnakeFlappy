@@ -4,9 +4,9 @@ import math
 from statistics import mean
 from collections import Counter
 
-import tflearn as tf
-from tflearn.layers.core import input_data, fully_connected
-from tflearn.layers.estimator import regression
+#import tflearn as tf
+#from tflearn.layers.core import input_data, fully_connected
+#from tflearn.layers.estimator import regression
 from keras.models import Sequential
 from keras.layers import Dense
 import tensorflow
