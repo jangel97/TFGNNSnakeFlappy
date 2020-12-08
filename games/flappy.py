@@ -91,7 +91,7 @@ def get_positions(flappy,pipes,score):
 	try:
 		prev_v=v
 		prev_h=h
-		print "PIPEEEEEEEEEE:" +str(pipes)
+		#print "PIPEEEEEEEEEE:" +str(pipes)
 		hcerca=pipes[indice]["x"]-flappy["x"]
 		v=pipes[indice]["y"]-120-flappy["y"] #pipes[0]=top pipes[1]=bot (considerar el punto medio ancho del hole=120 sumar 60 para punto medio)
 		vcerca=pipes[indice]["y"]-flappy["y"]

@@ -10,6 +10,17 @@ from collections import Counter
 from keras.models import Sequential
 from keras.layers import Dense
 import tensorflow
+import logging 
+import sys
+
+root = logging.getLogger()
+root.setLevel(logging.DEBUG)
+
+handler = logging.StreamHandler(sys.stdout)
+handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+root.addHandler(handler)
 
 class NN:
     def __init__(self, initial_games = 10000, test_games = 1000, goal_steps = 2000, lr = 1e-2, lib = '',game = '', hidden_neurons=1):
@@ -87,7 +98,7 @@ class NN:
         return model
 
     def predictAction(self,request,generate_observation,get_game_action,prange):
-	print(request)      
+	root.debug('Flappy info: '+str(request))      
         prev_observation = generate_observation(request)	# miramos que obs tiene la situacion en que estamos
 	predictions=[]
 	# Dependiendo de que libreria 
@@ -106,11 +117,9 @@ class NN:
                    				predictions.append(prediction)
 	# Cojemos la prediccion mas alta (que es la mejor)
         action = np.argmax(np.array(predictions))     
-	# Creamos la accion del juego
         game_action = get_game_action(request,action-1)
 
-	print(action)
-	print(game_action)
+	root.debug("Accion: "+str(action))
 
         return action,game_action
 
