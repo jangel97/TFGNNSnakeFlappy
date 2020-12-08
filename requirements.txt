@@ -1,3 +1,4 @@
+h5py
 numpy
 statistics
 tensorflow==1.3
