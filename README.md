@@ -1,5 +1,5 @@
 # TFGNNSnakeFlappy
-Neural Network developed in Python with Keras and TFlearn. The NN can be trained via an api rest (develop ed in Flask). 
+Neural Network developed in Python with Keras and TFlearn. The NN can be trained via an rest api (developed using Flask microframework). 
 Two different games have been implemented (in Javascript) to test the NN server, Flappy Birds and Snake. 
 It is interesting to see how the NN server manages to train and then play predicting the movement to be done depending on the state of the game. 
 Want to see the results? Check out our video! https://www.youtube.com/watch?v=DDbG2VCwowU
