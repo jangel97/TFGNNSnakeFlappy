@@ -6,10 +6,12 @@ If you want to see the result, check out this video: https://www.youtube.com/wat
 
 # Run the project with docker:
 1)Build the image with the following command:
-  $ docker build -t flappy .
+  
+$ docker build -t flappy .
   
 
 2)Run the image with the following command:
-  $ docker run --name flappy -it -d -p 5000:5000 flappy
+  
+$ docker run --name flappy -it -d -p 5000:5000 flappy
 
 3)Visit the following URL in your navigator: http://localhost:5000
