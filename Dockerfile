@@ -1,5 +1,5 @@
 FROM python:2.7
-LABEL mantainer="jamorena@essiprojects.com"
+LABEL authors="jangel97,eduardfores"
 COPY . /app
 WORKDIR /app
 RUN python -m pip install --upgrade pip && \
